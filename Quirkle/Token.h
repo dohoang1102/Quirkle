@@ -31,9 +31,9 @@ typedef enum {
 @property (nonatomic, assign) TokenShape shape;
 @property (nonatomic, strong) NSArray *gameRules;
 
-- (Token *)initWithColor:(TokenColor)color shape:(TokenShape)shape;
-
++ (Token*)tokenWithColor:(TokenColor)color shape:(TokenShape)shape;
+- (id)initWithColor:(TokenColor)color shape:(TokenShape)shape;
 - (void)putNeighbour:(Token *)token toSide:(TokenSide)side;
-//- (BOOL)isNeighbourOf:(Token *)otherToken;
 - (Token *)neighbourAtSide:(TokenSide)side;
+
 @end

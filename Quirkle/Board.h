@@ -3,6 +3,6 @@
 
 @interface Board : NSObject
 
-@property (nonatomic, strong, readonly) NSArray *tokens;
+- (void)clean;
 
 @end

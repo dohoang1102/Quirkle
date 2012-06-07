@@ -20,8 +20,8 @@
 	[_tokens addObject:token];
 }
 
-- (void)putTokensToBoard:(Board *)board {
-
+- (NSInteger)putTokensToBoard:(Board *)board {
+	return 0;
 }
 
 

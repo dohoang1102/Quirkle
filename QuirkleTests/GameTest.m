@@ -5,17 +5,24 @@
 
 @interface Game(TestSetter)
 - (void)setPlayers:(NSMutableArray *)players;
+- (void)setTokens:(NSMutableArray *)tokens;
 @end
 
 @implementation Game(TestSetter)
 - (void)setPlayers:(NSMutableArray *)players {
 	_players = players;
 }
+- (void)setTokens:(NSMutableArray *)tokens {
+	_tokens = tokens;
+}
 @end
 
 @interface Game()
 - (void)pullTokenForPlayer:(Player *)player;
 - (NSUInteger)randomizedTokenIndex;
+- (void)playTurnWithPlayer:(Player *)player;
+- (void)playTurns;
+- (void)distributeStartTokens;
 @end
 
 @interface GameTest : SenTestCase
@@ -96,7 +103,7 @@
 }
 
 - (void)testEveryPlayerPulls6TokensAtStart {
-	id player = [OCMockObject mockForClass:[Player class]];
+	id player = [OCMockObject niceMockForClass:[Player class]];
 	[[player expect] pullToken:OCMOCK_ANY];
 	[[player expect] pullToken:OCMOCK_ANY];
 	[[player expect] pullToken:OCMOCK_ANY];
@@ -104,7 +111,7 @@
 	[[player expect] pullToken:OCMOCK_ANY];
 	[[player expect] pullToken:OCMOCK_ANY];
 	[game setPlayers:[NSMutableArray arrayWithObject:player]];
-	[game startGame];
+	[game distributeStartTokens];
 	[player verify];
 }
 
@@ -124,21 +131,55 @@
 }
 
 - (void)testInitializedEmptyBoardAtStart {
+	[game setTokens:[NSMutableArray array]];
+	id board = [OCMockObject mockForClass:[Board class]];
+	[[board expect] clean];
+	[game setBoard:board];
 	[game startGame];
-	expect(game.board.tokens.count).toEqual(0);
+	[board verify];
 }
 
-//- (void)testAsksEveryPlayerToPutTokensToBoard {
-//	Board *board = [[Board alloc] init];
-//	[game setBoard:board];
-//	id player1 = [OCMockObject niceMockForClass:[Player class]];
-//	[[player1 expect] putTokensToBoard:board];
-//	id player2 = [OCMockObject niceMockForClass:[Player class]];
-//	[[player2 expect] putTokensToBoard:board];
-//	[game setPlayers:[NSMutableArray arrayWithObjects:player1, player2, nil]];
-//	[game startGame];
-//	[player1 verify];
-//	[player2 verify];
-//}
+- (void)testAsksEveryPlayerToPutTokensToBoard {
+	id player = [OCMockObject mockForClass:[Player class]];
+	int tokensPut = 2;
+	[[[player stub] andReturnValue:OCMOCK_VALUE(tokensPut)] putTokensToBoard:OCMOCK_ANY];
+	[[player expect] pullToken:OCMOCK_ANY];
+	[[player expect] pullToken:OCMOCK_ANY];
+
+	[game playTurnWithPlayer:player];
+
+	[player verify];
+}
+
+- (void)testPlayTurnsUntilTokensLeft {
+	NSMutableArray *tokens = [NSMutableArray array];
+	[tokens addObject:YellowCircleToken];
+	[tokens addObject:GreenSquareToken];
+	[tokens addObject:BlueCrossToken];
+	[tokens addObject:RedFlowerToken];
+	[tokens addObject:RedCrossToken];
+	[tokens addObject:RedCircleToken];
+	[game setTokens:tokens];
+
+	int tokensPut = 2;
+
+	id player1 = [OCMockObject mockForClass:[Player class]];
+	[[[player1 stub] andReturnValue:OCMOCK_VALUE(tokensPut)] putTokensToBoard:OCMOCK_ANY];
+	[[player1 expect] pullToken:OCMOCK_ANY];
+	[[player1 expect] pullToken:OCMOCK_ANY];
+	[[[player1 stub] andReturnValue:OCMOCK_VALUE(tokensPut)] putTokensToBoard:OCMOCK_ANY];
+	[[player1 expect] pullToken:OCMOCK_ANY];
+	[[player1 expect] pullToken:OCMOCK_ANY];
+	id player2 = [OCMockObject mockForClass:[Player class]];
+	[[player2 expect] pullToken:OCMOCK_ANY];
+	[[player2 expect] pullToken:OCMOCK_ANY];
+	[[[player2 stub] andReturnValue:OCMOCK_VALUE(tokensPut)] putTokensToBoard:OCMOCK_ANY];
+	[game setPlayers:[NSMutableArray arrayWithObjects:player1, player2, nil]];
+
+	[game playTurns];
+	[player1 verify];
+	[player2 verify];
+}
+
 
 @end

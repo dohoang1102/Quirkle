@@ -16,7 +16,11 @@
 @synthesize gameRules = _gameRules;
 
 
-- (Token *)initWithColor:(TokenColor)color shape:(TokenShape)shape {
++ (Token *)tokenWithColor:(TokenColor)color shape:(TokenShape)shape {
+	return [[Token alloc] initWithColor:color shape:shape];
+}
+
+- (id)initWithColor:(TokenColor)color shape:(TokenShape)shape {
 	self = [super init];
 	if (self) {
 		_color = color;

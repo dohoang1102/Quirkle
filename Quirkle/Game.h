@@ -10,6 +10,7 @@
 	NSMutableArray *_tokens;
 	NSMutableArray *_players;
 	Board *_board;
+	int startTokens;
 }
 
 @property (nonatomic, strong, readonly) NSArray *tokens;

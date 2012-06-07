@@ -9,6 +9,6 @@
 @property (nonatomic, strong, readonly) NSArray *tokens;
 
 - (void)pullToken:(Token*)token;
-- (void)putTokensToBoard:(Board*)board;
+- (NSInteger)putTokensToBoard:(Board*)board;
 
 @end

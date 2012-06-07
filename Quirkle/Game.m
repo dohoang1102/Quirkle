@@ -16,6 +16,9 @@
 	if (self) {
 		[self initializeTokens];
 		_players = [[NSMutableArray alloc] init];
+		_board = [[Board alloc] init];
+		srandom((unsigned int) time(NULL));
+		startTokens = 6;
 	}
 	return self;
 }
@@ -37,28 +40,47 @@
 }
 
 - (void)startGame {
-	srandom((unsigned int) time(NULL));
 	[self distributeStartTokens];
-	_board = [[Board alloc] init];
-	for (Player *player in _players) {
-//		[player putTokensToBoard:_board];
-	}
+	[_board clean];
+	[self playTurns];
 }
 
 - (void)distributeStartTokens {
 	[_players enumerateObjectsUsingBlock:^(Player *player, NSUInteger idx, BOOL *stop) {
-		int startTokenAmount = 6;
-		for (int i=0; i< startTokenAmount; i++) {
+		int startTokenAmount = startTokens;
+		for (int i = 0; i < startTokenAmount; i++) {
 			[self pullTokenForPlayer:player];
 		}
 	}];
 }
 
+- (void)playTurns {
+	while (_tokens.count > 0) {
+		for (Player *player in _players) {
+			[self playTurnWithPlayer:player];
+		}
+	}
+}
+
+- (void)playTurnWithPlayer:(Player *)player {
+	NSInteger tokensPut = [player putTokensToBoard:_board];
+	for (int i = 0; i < tokensPut; i++) {
+		[self pullTokenForPlayer:player];
+	}
+}
+
 - (void)pullTokenForPlayer:(Player *)player {
+	if (_tokens.count > 0) {
+		Token *token = [self randomToken];
+		[player pullToken:token];
+	}
+}
+
+- (Token *)randomToken {
 	NSUInteger randomIndex = [self randomizedTokenIndex];
 	Token *token = [_tokens objectAtIndex:randomIndex];
-	[player pullToken:token];
 	[_tokens removeObjectAtIndex:randomIndex];
+	return token;
 }
 
 - (NSUInteger)randomizedTokenIndex {

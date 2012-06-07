@@ -5,14 +5,8 @@
 	NSMutableArray *_tokens;
 }
 
-@synthesize tokens = _tokens;
-
-- (id)init {
-	self = [super init];
-	if (self) {
-		_tokens = [[NSMutableArray alloc] init];
-	}
-	return self;
+- (void)clean {
+	_tokens = [[NSMutableArray alloc] init];
 }
 
 
