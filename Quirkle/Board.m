@@ -1,5 +1,4 @@
 #import "Board.h"
-#import "Token.h"
 
 
 @implementation Board {
@@ -25,7 +24,10 @@
 	}
 }
 
-- (void)addToken:(Token *)token to:(Token *)neighbour atSide:(TokenSide)side {
-	[neighbour putNeighbour:token toSide:side];
+- (void)addToken:(Token *)neighbour to:(Token *)token atSide:(TokenSide)side {
+	if ([token canPutNeighbour:neighbour toSide:side]) {
+		[_tokens addObject:neighbour];
+		[token putNeighbour:neighbour toSide:side];
+	}
 }
 @end

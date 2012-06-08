@@ -15,11 +15,6 @@
 @synthesize shape = _shape;
 @synthesize gameRules = _gameRules;
 
-
-+ (Token *)tokenWithColor:(TokenColor)color shape:(TokenShape)shape {
-	return [[Token alloc] initWithColor:color shape:shape];
-}
-
 - (id)initWithColor:(TokenColor)color shape:(TokenShape)shape {
 	self = [super init];
 	if (self) {
@@ -31,14 +26,18 @@
 }
 
 - (void)putNeighbour:(Token *)token toSide:(TokenSide)side {
+	if ([self canPutNeighbour:token toSide:side]) {
+		[_neighbours replaceObjectAtIndex:side withObject:token];
+		[token putNeighbour:self toSide:[self oppositeSideOf:side]];
+	}
+}
+
+- (BOOL)canPutNeighbour:(Token *)token toSide:(TokenSide)side {
 	BOOL allRulesApply = YES;
 	for (GameRule *rule in self.gameRules) {
 		allRulesApply &= [rule appliesToToken:token atSide:side];
 	}
-	if (allRulesApply) {
-		[_neighbours replaceObjectAtIndex:side withObject:token];
-		[token putNeighbour:self toSide:[self oppositeSideOf:side]];
-	}
+	return allRulesApply;
 }
 
 - (TokenSide)oppositeSideOf:(TokenSide)side {

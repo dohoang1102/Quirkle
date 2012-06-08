@@ -1,5 +1,4 @@
 #import "Board.h"
-#import "Token.h"
 
 @interface BoardTest : SenTestCase
 @end
@@ -33,9 +32,19 @@
 
 - (void)testAddsTokensAsNeighbourOfOtherTokens {
 	Token *yellowCircle = YellowCircleToken;
-	Token *token = YellowCrossToken;
+	Token *yellowCross = YellowCrossToken;
 	[board putFirstToken:yellowCircle];
-	[board addToken:token to:yellowCircle atSide:TokenSideLeft];
-	expect([yellowCircle neighbourAtSide:TokenSideLeft]).toEqual(token);
+	[board addToken:yellowCross to:yellowCircle atSide:TokenSideLeft];
+	expect([yellowCircle neighbourAtSide:TokenSideLeft]).toEqual(yellowCross);
+	expect(board.tokens).toContain(yellowCross);
+}
+
+- (void)testAddsNoTokensAgainstRules {
+	Token *yellowCircle = YellowCircleToken;
+	Token *blueCross = BlueCrossToken;
+	[board putFirstToken:yellowCircle];
+	[board addToken:blueCross to:yellowCircle atSide:TokenSideLeft];
+	expect([yellowCircle neighbourAtSide:TokenSideLeft]).toBeNil();
+	expect(board.tokens).Not.toContain(blueCross);
 }
 @end
