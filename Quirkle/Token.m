@@ -89,22 +89,22 @@
 	NSString *color;
 	NSString *shape;
 	switch (self.color) {
-		case TokenColorBlue: color = @"Blue"; break;
-		case TokenColorGreen: color = @"Green"; break;
-		case TokenColorOrange: color = @"Orange"; break;
-		case TokenColorPurple: color = @"Purple"; break;
-		case TokenColorRed: color = @"Red"; break;
-		case TokenColorYellow: color = @"Yellow"; break;
+		case TokenColorBlue: color = @"B"; break;
+		case TokenColorGreen: color = @"G"; break;
+		case TokenColorOrange: color = @"O"; break;
+		case TokenColorPurple: color = @"P"; break;
+		case TokenColorRed: color = @"R"; break;
+		case TokenColorYellow: color = @"Y"; break;
 	}
 	switch (self.shape) {
-		case TokenShapeCircle: shape = @"Circle"; break;
-		case TokenShapeCross: shape = @"Cross"; break;
-		case TokenShapeFlower: shape = @"Flower"; break;
-		case TokenShapeSquare: shape = @"Square"; break;
-		case TokenShapeStar: shape = @"Star"; break;
-		case TokenShapeTriangle: shape = @"Triangle"; break;
+		case TokenShapeCircle: shape = @"C"; break;
+		case TokenShapeCross: shape = @"X"; break;
+		case TokenShapeFlower: shape = @"F"; break;
+		case TokenShapeSquare: shape = @"Q"; break;
+		case TokenShapeStar: shape = @"S"; break;
+		case TokenShapeTriangle: shape = @"T"; break;
 	}
-	return [NSString stringWithFormat:@"Token %@ %@", color, shape];
+	return [NSString stringWithFormat:@"%@%@", color, shape];
 }
 
 @end
