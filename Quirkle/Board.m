@@ -24,4 +24,8 @@
 		[_tokens addObject:token];
 	}
 }
+
+- (void)addToken:(Token *)token to:(Token *)neighbour atSide:(TokenSide)side {
+	[neighbour putNeighbour:token toSide:side];
+}
 @end

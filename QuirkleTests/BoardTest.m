@@ -31,8 +31,11 @@
 	expect(board.tokens.count).toEqual(0);
 }
 
-- (void)testStoresAllPuttedTokens {
-
+- (void)testAddsTokensAsNeighbourOfOtherTokens {
+	Token *yellowCircle = YellowCircleToken;
+	Token *token = YellowCrossToken;
+	[board putFirstToken:yellowCircle];
+	[board addToken:token to:yellowCircle atSide:TokenSideLeft];
+	expect([yellowCircle neighbourAtSide:TokenSideLeft]).toEqual(token);
 }
-
 @end
