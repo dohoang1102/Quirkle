@@ -1,13 +1,27 @@
 #import "Board.h"
+#import "Token.h"
 
 
 @implementation Board {
 	NSMutableArray *_tokens;
 }
+@synthesize tokens = _tokens;
 
-- (void)clean {
-	_tokens = [[NSMutableArray alloc] init];
+- (id)init {
+	self = [super init];
+	if (self) {
+		_tokens = [[NSMutableArray alloc] init];
+	}
+	return self;
 }
 
+- (void)clean {
+	[_tokens removeAllObjects];
+}
 
+- (void)putFirstToken:(Token *)token {
+	if (_tokens.count == 0) {
+		[_tokens addObject:token];
+	}
+}
 @end

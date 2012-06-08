@@ -10,11 +10,11 @@ DONE
 	- all tokens in same row must have same color or same shape but only once
 
 WIP
-
-IDEAS
 - game with rounds
 	- let user set token
 	- switch to next user
+
+IDEAS
 - count points
 - determine end of game
 	- determine winner
