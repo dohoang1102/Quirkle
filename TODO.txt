@@ -8,13 +8,18 @@ DONE
 	- token with same shape color is valid
 	- token with different color or shape is invalid
 	- all tokens in same row must have same color or same shape but only once
+- [GC]authenticate local player
 
 WIP
+- enable GameCenter [GC]
+	- finding players for match
+	- handling turn over
+	- transferring game data to other devices
+
+IDEAS
 - game with rounds
 	- let user set token
 	- switch to next user
-
-IDEAS
 - count points
 - determine end of game
 	- determine winner

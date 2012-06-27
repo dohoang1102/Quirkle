@@ -10,7 +10,7 @@
 - (void)testAuthenticatesLocalPlayer {
 	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad" bundle:nil];
 	MainViewController *mainViewController = [storyboard instantiateInitialViewController];
-	id playerMock = [OCMockObject mockForClass:[GKLocalPlayer class]];
+	id playerMock = [OCMockObject niceMockForClass:[GKLocalPlayer class]];
 	[[playerMock expect] authenticateWithCompletionHandler:OCMOCK_ANY];
 	mainViewController.localPlayer = playerMock;
 	[mainViewController viewDidLoad];
