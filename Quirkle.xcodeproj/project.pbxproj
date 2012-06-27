@@ -18,7 +18,7 @@
 		26013377157956EC00526BDF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2601335E157956EB00526BDF /* Foundation.framework */; };
 		2601337F157956EC00526BDF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2601337D157956EC00526BDF /* InfoPlist.strings */; };
 		26013390157957E900526BDF /* TODO.txt in Resources */ = {isa = PBXBuildFile; fileRef = 2601338F157957E900526BDF /* TODO.txt */; };
-		2601339815795A2C00526BDF /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2601339715795A2C00526BDF /* MainStoryboard.storyboard */; };
+		2601339815795A2C00526BDF /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2601339715795A2C00526BDF /* MainStoryboard_iPad.storyboard */; };
 		2601339B15795A4500526BDF /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2601339A15795A4500526BDF /* MainViewController.m */; };
 		2601339B15795A4500526BE1 /* TokenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2601339B15795A4500526BE0 /* TokenTest.m */; };
 		2601339B15795A4500526BE4 /* Token.m in Sources */ = {isa = PBXBuildFile; fileRef = 2601339B15795A4500526BE3 /* Token.m */; };
@@ -33,10 +33,11 @@
 		260133F4157DF28700526BEA /* RowWithUniformColorRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 260133F4157DF28700526BE9 /* RowWithUniformColorRule.m */; };
 		260133F4157DF28700526BED /* AllTokensInRowMustBeDifferentRuleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 260133F4157DF28700526BEC /* AllTokensInRowMustBeDifferentRuleTest.m */; };
 		260133F4157DF28700526BF0 /* AllTokensInRowMustBeDifferentRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 260133F4157DF28700526BEF /* AllTokensInRowMustBeDifferentRule.m */; };
+		263C1C41159B3E480023E6C4 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 263C1C40159B3E480023E6C4 /* MainStoryboard_iPhone.storyboard */; };
 		26E7828115808A4B0009DC09 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E7827E15808A4B0009DC09 /* Game.m */; };
 		26E7828215808A4B0009DC09 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E7828015808A4B0009DC09 /* Player.m */; };
 		26E7828515808A5D0009DC09 /* GameTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E7828415808A5D0009DC09 /* GameTest.m */; };
-		26E7828515808A5D0009DC0B /* NSMutableArray+Shuffling.m in Sources */ = {isa = PBXBuildFile; };
+		26E7828515808A5D0009DC0B /* (null) in Sources */ = {isa = PBXBuildFile; };
 		26E7828515808A5D0009DC11 /* PlayerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E7828515808A5D0009DC10 /* PlayerTest.m */; };
 		26E7828515808A5D0009DC14 /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E7828515808A5D0009DC13 /* Board.m */; };
 		26E7828515808A5D0009DC17 /* BoardTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E7828515808A5D0009DC16 /* BoardTest.m */; };
@@ -68,7 +69,7 @@
 		2601337C157956EC00526BDF /* QuirkleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "QuirkleTests-Info.plist"; sourceTree = "<group>"; };
 		2601337E157956EC00526BDF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2601338F157957E900526BDF /* TODO.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO.txt; sourceTree = "<group>"; };
-		2601339715795A2C00526BDF /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
+		2601339715795A2C00526BDF /* MainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		2601339915795A4500526BDF /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		2601339A15795A4500526BDF /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		2601339B15795A4500526BE0 /* TokenTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenTest.m; sourceTree = "<group>"; };
@@ -121,6 +122,7 @@
 		260133F4157DF28700526BEC /* AllTokensInRowMustBeDifferentRuleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTokensInRowMustBeDifferentRuleTest.m; sourceTree = "<group>"; };
 		260133F4157DF28700526BEF /* AllTokensInRowMustBeDifferentRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTokensInRowMustBeDifferentRule.m; sourceTree = "<group>"; };
 		260133F4157DF28700526BF1 /* AllTokensInRowMustBeDifferentRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTokensInRowMustBeDifferentRule.h; sourceTree = "<group>"; };
+		263C1C40159B3E480023E6C4 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		26E7827D15808A4B0009DC09 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		26E7827E15808A4B0009DC09 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		26E7827F15808A4B0009DC09 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
@@ -199,14 +201,15 @@
 				26E7827E15808A4B0009DC09 /* Game.m */,
 				26E7827F15808A4B0009DC09 /* Player.h */,
 				26E7828015808A4B0009DC09 /* Player.m */,
-				260133F4157DF28700526BDF /* GameRules */,
 				2601336B157956EB00526BDF /* AppDelegate.h */,
 				2601336C157956EB00526BDF /* AppDelegate.m */,
-				2601339715795A2C00526BDF /* MainStoryboard.storyboard */,
+				2601339715795A2C00526BDF /* MainStoryboard_iPad.storyboard */,
+				263C1C40159B3E480023E6C4 /* MainStoryboard_iPhone.storyboard */,
 				2601339915795A4500526BDF /* MainViewController.h */,
 				2601339A15795A4500526BDF /* MainViewController.m */,
 				2601339B15795A4500526BE5 /* Token.h */,
 				2601339B15795A4500526BE3 /* Token.m */,
+				260133F4157DF28700526BDF /* GameRules */,
 			);
 			path = Quirkle;
 			sourceTree = "<group>";
@@ -409,7 +412,8 @@
 			files = (
 				26013367157956EB00526BDF /* InfoPlist.strings in Resources */,
 				26013390157957E900526BDF /* TODO.txt in Resources */,
-				2601339815795A2C00526BDF /* MainStoryboard.storyboard in Resources */,
+				2601339815795A2C00526BDF /* MainStoryboard_iPad.storyboard in Resources */,
+				263C1C41159B3E480023E6C4 /* MainStoryboard_iPhone.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,7 +460,7 @@
 				260133F4157DF28700526BF0 /* AllTokensInRowMustBeDifferentRule.m in Sources */,
 				26E7828115808A4B0009DC09 /* Game.m in Sources */,
 				26E7828215808A4B0009DC09 /* Player.m in Sources */,
-				26E7828515808A5D0009DC0B /* NSMutableArray+Shuffling.m in Sources */,
+				26E7828515808A5D0009DC0B /* (null) in Sources */,
 				26E7828515808A5D0009DC14 /* Board.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -560,6 +564,7 @@
 				GCC_PREFIX_HEADER = "Quirkle/Quirkle-Prefix.pch";
 				INFOPLIST_FILE = "Quirkle/Quirkle-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -571,6 +576,7 @@
 				GCC_PREFIX_HEADER = "Quirkle/Quirkle-Prefix.pch";
 				INFOPLIST_FILE = "Quirkle/Quirkle-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
