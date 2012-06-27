@@ -34,6 +34,7 @@
 		260133F4157DF28700526BED /* AllTokensInRowMustBeDifferentRuleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 260133F4157DF28700526BEC /* AllTokensInRowMustBeDifferentRuleTest.m */; };
 		260133F4157DF28700526BF0 /* AllTokensInRowMustBeDifferentRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 260133F4157DF28700526BEF /* AllTokensInRowMustBeDifferentRule.m */; };
 		263C1C41159B3E480023E6C4 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 263C1C40159B3E480023E6C4 /* MainStoryboard_iPhone.storyboard */; };
+		263C1C44159B3EDA0023E6C4 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263C1C42159B3ED10023E6C4 /* GameKit.framework */; };
 		26E7828115808A4B0009DC09 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E7827E15808A4B0009DC09 /* Game.m */; };
 		26E7828215808A4B0009DC09 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E7828015808A4B0009DC09 /* Player.m */; };
 		26E7828515808A5D0009DC09 /* GameTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E7828415808A5D0009DC09 /* GameTest.m */; };
@@ -41,6 +42,8 @@
 		26E7828515808A5D0009DC11 /* PlayerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E7828515808A5D0009DC10 /* PlayerTest.m */; };
 		26E7828515808A5D0009DC14 /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E7828515808A5D0009DC13 /* Board.m */; };
 		26E7828515808A5D0009DC17 /* BoardTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E7828515808A5D0009DC16 /* BoardTest.m */; };
+		26E7828515808A5D0009DC19 /* MainViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E7828515808A5D0009DC18 /* MainViewControllerTest.m */; };
+		26FDC77F159B42FE00F33B24 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263C1C42159B3ED10023E6C4 /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +126,7 @@
 		260133F4157DF28700526BEF /* AllTokensInRowMustBeDifferentRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTokensInRowMustBeDifferentRule.m; sourceTree = "<group>"; };
 		260133F4157DF28700526BF1 /* AllTokensInRowMustBeDifferentRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTokensInRowMustBeDifferentRule.h; sourceTree = "<group>"; };
 		263C1C40159B3E480023E6C4 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		263C1C42159B3ED10023E6C4 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		26E7827D15808A4B0009DC09 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		26E7827E15808A4B0009DC09 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		26E7827F15808A4B0009DC09 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 		26E7828515808A5D0009DC13 /* Board.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Board.m; sourceTree = "<group>"; };
 		26E7828515808A5D0009DC15 /* Board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
 		26E7828515808A5D0009DC16 /* BoardTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardTest.m; sourceTree = "<group>"; };
+		26E7828515808A5D0009DC18 /* MainViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewControllerTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +147,7 @@
 				2601335D157956EB00526BDF /* UIKit.framework in Frameworks */,
 				2601335F157956EB00526BDF /* Foundation.framework in Frameworks */,
 				26013361157956EB00526BDF /* CoreGraphics.framework in Frameworks */,
+				263C1C44159B3EDA0023E6C4 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +159,7 @@
 				26013376157956EC00526BDF /* UIKit.framework in Frameworks */,
 				26013377157956EC00526BDF /* Foundation.framework in Frameworks */,
 				260133BC157A37AA00526BDF /* libExpecta-ios-universal.a in Frameworks */,
+				26FDC77F159B42FE00F33B24 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +191,7 @@
 		2601335B157956EB00526BDF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				263C1C42159B3ED10023E6C4 /* GameKit.framework */,
 				2601335C157956EB00526BDF /* UIKit.framework */,
 				2601335E157956EB00526BDF /* Foundation.framework */,
 				26013360157956EB00526BDF /* CoreGraphics.framework */,
@@ -229,6 +237,7 @@
 		2601337A157956EC00526BDF /* QuirkleTests */ = {
 			isa = PBXGroup;
 			children = (
+				26E7828515808A5D0009DC18 /* MainViewControllerTest.m */,
 				26E7828515808A5D0009DC16 /* BoardTest.m */,
 				26E7828515808A5D0009DC10 /* PlayerTest.m */,
 				26E7828415808A5D0009DC09 /* GameTest.m */,
@@ -477,6 +486,7 @@
 				26E7828515808A5D0009DC09 /* GameTest.m in Sources */,
 				26E7828515808A5D0009DC11 /* PlayerTest.m in Sources */,
 				26E7828515808A5D0009DC17 /* BoardTest.m in Sources */,
+				26E7828515808A5D0009DC19 /* MainViewControllerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
