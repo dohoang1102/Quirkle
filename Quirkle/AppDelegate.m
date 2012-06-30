@@ -1,12 +1,13 @@
 #import "AppDelegate.h"
-#import "MainViewController.h"
+#import "GameCenterHelper.h"
 
 @implementation AppDelegate
 
 @synthesize window = _window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    return YES;
+	[[GameCenterHelper sharedInstance] authenticateLocalPlayer];
+	return YES;
 }
 
 @end
