@@ -27,7 +27,7 @@
 	_tokens = [[NSMutableArray alloc] init];
 	for (TokenColor color = TokenColorYellow; color <= TokenColorPurple; color++) {
 		for (TokenShape shape = TokenShapeCircle; shape <= TokenShapeCross; shape++) {
-			for (int tokenCount = 0; tokenCount < TokenCount; tokenCount++) {
+			for (int tokenCount = 0; tokenCount < TokenPerTokenType; tokenCount++) {
 				Token *token = [[Token alloc] initWithColor:color shape:shape];
 				[_tokens addObject:token];
 			}

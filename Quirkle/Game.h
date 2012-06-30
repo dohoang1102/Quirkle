@@ -3,7 +3,9 @@
 @class Player;
 @class Board;
 
-#define TokenCount 3
+#define TokenPerTokenType 3
+#define MinPlayers 2
+#define MaxPlayers 4
 
 
 @interface Game : NSObject {

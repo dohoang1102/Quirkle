@@ -46,6 +46,7 @@
 		26FDC77F159B42FE00F33B24 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263C1C42159B3ED10023E6C4 /* GameKit.framework */; };
 		26FDC77F159B42FE00F33B26 /* AppDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FDC77F159B42FE00F33B25 /* AppDelegateTest.m */; };
 		26FDC77F159B42FE00F33B29 /* GameCenterHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FDC77F159B42FE00F33B28 /* GameCenterHelper.m */; };
+		26FDC77F159B42FE00F33B2E /* GameCenterHelperTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 26FDC77F159B42FE00F33B2D /* GameCenterHelperTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +143,8 @@
 		26FDC77F159B42FE00F33B25 /* AppDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegateTest.m; sourceTree = "<group>"; };
 		26FDC77F159B42FE00F33B28 /* GameCenterHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterHelper.m; sourceTree = "<group>"; };
 		26FDC77F159B42FE00F33B2A /* GameCenterHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterHelper.h; sourceTree = "<group>"; };
+		26FDC77F159B42FE00F33B2C /* GameCenterHelper+TestSetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GameCenterHelper+TestSetter.h"; sourceTree = "<group>"; };
+		26FDC77F159B42FE00F33B2D /* GameCenterHelperTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterHelperTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +247,8 @@
 		2601337A157956EC00526BDF /* QuirkleTests */ = {
 			isa = PBXGroup;
 			children = (
+				26FDC77F159B42FE00F33B2D /* GameCenterHelperTest.m */,
+				26FDC77F159B42FE00F33B2C /* GameCenterHelper+TestSetter.h */,
 				26FDC77F159B42FE00F33B25 /* AppDelegateTest.m */,
 				26E7828515808A5D0009DC18 /* MainViewControllerTest.m */,
 				26E7828515808A5D0009DC16 /* BoardTest.m */,
@@ -497,6 +502,7 @@
 				26E7828515808A5D0009DC17 /* BoardTest.m in Sources */,
 				26E7828515808A5D0009DC19 /* MainViewControllerTest.m in Sources */,
 				26FDC77F159B42FE00F33B26 /* AppDelegateTest.m in Sources */,
+				26FDC77F159B42FE00F33B2E /* GameCenterHelperTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

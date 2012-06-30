@@ -1,9 +1,6 @@
 #import "AppDelegate.h"
 #import "GameCenterHelper.h"
-
-@interface GameCenterHelper(Test)
-+ (void)setSharedInstance:(GameCenterHelper *)instance;
-@end
+#import "GameCenterHelper+TestSetter.h"
 
 @interface AppDelegateTest : SenTestCase
 @end
