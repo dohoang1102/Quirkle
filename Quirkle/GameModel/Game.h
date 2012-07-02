@@ -21,5 +21,7 @@
 
 - (void)addPlayer:(Player *)player;
 - (void)startGame;
+- (void)distributeStartTokens;
 
+- (Player *)playerWithParticipantID:(NSString *)playerID;
 @end

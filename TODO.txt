@@ -15,6 +15,7 @@ DONE
 	- transferring game data to other devices
 
 WIP
+- connect GamcenterLogic with GameLogic
 
 IDEAS
 - Regel Token über Eck

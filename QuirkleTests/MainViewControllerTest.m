@@ -1,5 +1,6 @@
 #import "MainViewController.h"
 #import "GameCenterHelper+TestSetter.h"
+#import "Game.h"
 
 @interface MainViewControllerTest : SenTestCase
 @end
@@ -40,6 +41,9 @@
 	[mainViewController takeTurnButtonTouched:nil];
 	[match verify];
 	[gameCenterHelper verify];
+}
+
+- (void)testInitializesNewGame {
 }
 
 @end

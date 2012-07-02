@@ -8,6 +8,7 @@
 
 @property (nonatomic, strong, readonly) NSArray *tokens;
 
+@property (nonatomic, copy) NSString *participantID;
 - (void)pullToken:(Token*)token;
 - (NSInteger)putTokensToBoard:(Board*)board;
 

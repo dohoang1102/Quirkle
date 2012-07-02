@@ -181,5 +181,9 @@
 	[player2 verify];
 }
 
+- (void)testResetsGame {
+	Player *player = [[Player alloc] init];
+	[game addPlayer:player];
+}
 
 @end

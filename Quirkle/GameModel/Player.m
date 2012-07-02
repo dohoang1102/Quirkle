@@ -5,8 +5,12 @@
 
 @implementation Player {
 	NSMutableArray *_tokens;
+@private
+	NSString *_participantID;
 }
 @synthesize tokens = _tokens;
+@synthesize participantID = _participantID;
+
 
 - (id)init {
 	self = [super init];

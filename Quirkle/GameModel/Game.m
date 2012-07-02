@@ -45,6 +45,7 @@
 	[self playTurns];
 }
 
+
 - (void)distributeStartTokens {
 	[_players enumerateObjectsUsingBlock:^(Player *player, NSUInteger idx, BOOL *stop) {
 		int startTokenAmount = startTokens;
@@ -87,4 +88,12 @@
 	return (NSUInteger) (random() % _tokens.count);
 }
 
+- (Player *)playerWithParticipantID:(NSString *)playerID {
+	for (Player *player in self.players) {
+		if ([player.participantID isEqualToString:playerID]) {
+			return player;
+		}
+	}
+	return nil;
+}
 @end

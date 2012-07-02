@@ -90,7 +90,7 @@ static GameCenterHelper *_sharedInstance;
 	self.currentMatch = match;
 
 	if ([self isFirstTurn:match]) {
-		[_delegate startNewGameForMatch:nil];
+		[_delegate startNewGameForMatch:match];
 	} else {
 		if ([self isLocalPlayersTurnInMatch:match]) {
 			[_delegate takeTurnInMatch:match];
