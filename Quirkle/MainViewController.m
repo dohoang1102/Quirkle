@@ -1,14 +1,8 @@
 #import <GameKit/GameKit.h>
 #import "MainViewController.h"
-#import "GameCenterHelper.h"
 #import "Game.h"
 
-@interface MainViewController ()
-
-@end
-
-@implementation MainViewController {
-}
+@implementation MainViewController
 
 @synthesize statusLabel;
 @synthesize createGameButton;
@@ -23,6 +17,13 @@
 	[GameCenterHelper sharedInstance].delegate = self;
 }
 
+- (void)viewDidUnload {
+	[self setStatusLabel:nil];
+	[self setCreateGameButton:nil];
+	[self setTakeTurnButton:nil];
+	[super viewDidUnload];
+}
+
 - (IBAction)createGameButtonTouched:(id)sender {
 	[[GameCenterHelper sharedInstance] findMatchWithMinPlayers:MinPlayers maxPlayers:MaxPlayers viewController:self];
 }
@@ -32,8 +33,8 @@
 
 	GKTurnBasedParticipant *nextParticipant = [[GameCenterHelper sharedInstance] nextActiveParticipantInMatch:currentMatch];
 	[currentMatch endTurnWithNextParticipant:nextParticipant
-	                               matchData:[@"matchData" dataUsingEncoding:NSUTF8StringEncoding]
-			completionHandler:^(NSError *error) {
+	                               matchData:[@"matchData" dataUsingEncoding:NSUTF8StringEncoding] 
+						   completionHandler:^(NSError *error) {
 				if (error) {
 					NSLog(@"%@", error);
 				} else {
@@ -43,12 +44,6 @@
 	self.statusLabel.text = @"Turn taken, waitung for response";
 }
 
-- (void)viewDidUnload {
-	[self setStatusLabel:nil];
-	[self setCreateGameButton:nil];
-	[self setTakeTurnButton:nil];
-	[super viewDidUnload];
-}
 
 #pragma mark GameCenterHelperDelegate methods
 - (void)startNewGameForMatch:(GKTurnBasedMatch *)match {

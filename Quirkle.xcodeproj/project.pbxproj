@@ -213,21 +213,13 @@
 			children = (
 				26FDC77F159B42FE00F33B2A /* GameCenterHelper.h */,
 				26FDC77F159B42FE00F33B28 /* GameCenterHelper.m */,
-				26E7828515808A5D0009DC15 /* Board.h */,
-				26E7828515808A5D0009DC13 /* Board.m */,
-				26E7827D15808A4B0009DC09 /* Game.h */,
-				26E7827E15808A4B0009DC09 /* Game.m */,
-				26E7827F15808A4B0009DC09 /* Player.h */,
-				26E7828015808A4B0009DC09 /* Player.m */,
+				268CBC7015A1953F008BF977 /* GameModel */,
 				2601336B157956EB00526BDF /* AppDelegate.h */,
 				2601336C157956EB00526BDF /* AppDelegate.m */,
 				2601339715795A2C00526BDF /* MainStoryboard_iPad.storyboard */,
 				263C1C40159B3E480023E6C4 /* MainStoryboard_iPhone.storyboard */,
 				2601339915795A4500526BDF /* MainViewController.h */,
 				2601339A15795A4500526BDF /* MainViewController.m */,
-				2601339B15795A4500526BE5 /* Token.h */,
-				2601339B15795A4500526BE3 /* Token.m */,
-				260133F4157DF28700526BDF /* GameRules */,
 			);
 			path = Quirkle;
 			sourceTree = "<group>";
@@ -359,7 +351,23 @@
 				260133BD157A37E800526BEE /* SameColorOrShapeRule.h */,
 				260133BD157A37E800526BEC /* SameColorOrShapeRule.m */,
 			);
-			name = GameRules;
+			path = GameRules;
+			sourceTree = "<group>";
+		};
+		268CBC7015A1953F008BF977 /* GameModel */ = {
+			isa = PBXGroup;
+			children = (
+				260133F4157DF28700526BDF /* GameRules */,
+				26E7828515808A5D0009DC15 /* Board.h */,
+				26E7828515808A5D0009DC13 /* Board.m */,
+				26E7827D15808A4B0009DC09 /* Game.h */,
+				26E7827E15808A4B0009DC09 /* Game.m */,
+				26E7827F15808A4B0009DC09 /* Player.h */,
+				26E7828015808A4B0009DC09 /* Player.m */,
+				2601339B15795A4500526BE5 /* Token.h */,
+				2601339B15795A4500526BE3 /* Token.m */,
+			);
+			path = GameModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
