@@ -25,7 +25,7 @@ typedef enum {
 	TokenSideLeft
 } TokenSide;
 
-@interface Token : NSObject
+@interface Token : NSObject <NSCoding>
 
 @property (nonatomic, assign) TokenColor color;
 @property (nonatomic, assign) TokenShape shape;

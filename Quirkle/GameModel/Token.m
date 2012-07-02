@@ -25,6 +25,22 @@
 	return self;
 }
 
+- (id)initWithCoder:(NSCoder *)coder {
+	self = [super init];
+	if (self) {
+		_color = (TokenColor) [coder decodeIntegerForKey:@"color"];
+		_shape = (TokenShape) [coder decodeIntegerForKey:@"shape"];
+		_neighbours = [coder decodeObjectForKey:@"neighbours"];
+	}
+	return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+	[coder encodeObject:_neighbours forKey:@"neighbours"];
+	[coder encodeInteger:_shape forKey:@"shape"];
+	[coder encodeInteger:_color forKey:@"color"];
+}
+
 - (void)putNeighbour:(Token *)token toSide:(TokenSide)side {
 	if ([self canPutNeighbour:token toSide:side]) {
 		[_neighbours replaceObjectAtIndex:side withObject:token];

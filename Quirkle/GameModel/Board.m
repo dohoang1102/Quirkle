@@ -14,6 +14,18 @@
 	return self;
 }
 
+- (id)initWithCoder:(NSCoder *)coder {
+	self = [super init];
+	if (self) {
+		_tokens = [coder decodeObjectForKey:@"tokens"];
+	}
+	return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+	[coder encodeObject:_tokens forKey:@"tokens"];
+}
+
 - (void)clean {
 	[_tokens removeAllObjects];
 }

@@ -40,10 +40,11 @@
 
 - (IBAction)takeTurnButtonTouched:(id)sender {
 	GKTurnBasedMatch *currentMatch = [[GameCenterHelper sharedInstance] currentMatch];
+	Game *currentGame = [self.currentGames objectForKey:currentMatch.matchID];
 
 	GKTurnBasedParticipant *nextParticipant = [[GameCenterHelper sharedInstance] nextActiveParticipantInMatch:currentMatch];
 	[currentMatch endTurnWithNextParticipant:nextParticipant
-	                               matchData:[@"matchData" dataUsingEncoding:NSUTF8StringEncoding]
+	                               matchData:[NSKeyedArchiver archivedDataWithRootObject:currentGame]
 						   completionHandler:^(NSError *error) {
 				if (error) {
 					NSLog(@"%@", error);
@@ -57,7 +58,7 @@
 - (IBAction)tokenButtonTouched:(id)sender {
 }
 
-- (void)updateUIForGame:(GKTurnBasedMatch *)match {
+- (void)updateUIForMatch:(GKTurnBasedMatch *)match {
 	Game *currentGame = [self.currentGames objectForKey:match.matchID];
 	Player *currentPlayer = [currentGame playerWithParticipantID:match.currentParticipant.playerID];
 	for (NSUInteger i=0; i<currentPlayer.tokens.count; i++) {
@@ -82,17 +83,23 @@
 
 	Game *game = [[Game alloc] initWithParticipantIDs:[self playerIDsForPlayersInMatch:match]];
 	[self.currentGames setObject:game forKey:match.matchID];
-	[self updateUIForGame:match];
+	[self updateUIForMatch:match];
 }
 
 - (void)takeTurnInMatch:(GKTurnBasedMatch *)match {
 	self.statusLabel.text = @"Your turn";
 	self.takeTurnButton.enabled = YES;
+	Game *game = [NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
+	[self.currentGames setObject:game forKey:match.matchID];
+	[self updateUIForMatch:match];
 }
 
 - (void)updateMatch:(GKTurnBasedMatch *)match {
 	self.statusLabel.text = @"Other players turn";
 	self.takeTurnButton.enabled = NO;
+	Game *game = [NSKeyedUnarchiver unarchiveObjectWithData:match.matchData];
+	[self.currentGames setObject:game forKey:match.matchID];
+	[self updateUIForMatch:match];
 }
 
 - (void)sendNotice:(NSString *)notice forMatch:(GKTurnBasedMatch *)match {

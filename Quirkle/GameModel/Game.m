@@ -26,6 +26,22 @@
 	return self;
 }
 
+- (id)initWithCoder:(NSCoder *)coder {
+	self = [super init];
+	if (self) {
+		_board = [coder decodeObjectForKey:@"board"];
+		_players = [coder decodeObjectForKey:@"players"];
+		_tokens = [coder decodeObjectForKey:@"tokens"];
+	}
+	return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+	[coder encodeObject:_tokens forKey:@"tokens"];
+	[coder encodeObject:_players forKey:@"players"];
+	[coder encodeObject:_board forKey:@"board"];
+}
+
 - (void)addPlayerWithParticipantID:(NSString *)playerID {
 	Player *player = [[Player alloc] init];
 	player.participantID = playerID;

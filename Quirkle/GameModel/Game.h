@@ -8,7 +8,7 @@
 #define MaxPlayers 4
 
 
-@interface Game : NSObject {
+@interface Game : NSObject <NSCoding> {
 	NSMutableArray *_tokens;
 	NSMutableArray *_players;
 	Board *_board;

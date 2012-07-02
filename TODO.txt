@@ -13,9 +13,9 @@ DONE
 	- finding players for match
 	- handling turn over
 	- transferring game data to other devices
+	- connect GamcenterLogic with GameLogic
 
 WIP
-- connect GamcenterLogic with GameLogic
 
 IDEAS
 - Regel Token über Eck

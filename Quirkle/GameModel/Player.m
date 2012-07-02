@@ -5,7 +5,6 @@
 
 @implementation Player {
 	NSMutableArray *_tokens;
-@private
 	NSString *_participantID;
 }
 @synthesize tokens = _tokens;
@@ -18,6 +17,20 @@
 		_tokens = [[NSMutableArray alloc] init];
 	}
 	return self;
+}
+
+- (id)initWithCoder:(NSCoder *)coder {
+	self = [super init];
+	if (self ) {
+		_tokens = [coder decodeObjectForKey:@"tokens"];
+		_participantID = [coder decodeObjectForKey:@"participantID"];
+	}
+	return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder {
+	[coder encodeObject:_participantID forKey:@"participantID"];
+	[coder encodeObject:_tokens forKey:@"tokens"];
 }
 
 - (void)pullToken:(Token *)token {

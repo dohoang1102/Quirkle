@@ -4,7 +4,7 @@
 @class Board;
 
 
-@interface Player : NSObject
+@interface Player : NSObject <NSCoding>
 
 @property (nonatomic, strong, readonly) NSArray *tokens;
 

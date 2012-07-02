@@ -4,7 +4,7 @@
 @class Token;
 
 
-@interface Board : NSObject
+@interface Board : NSObject <NSCoding>
 
 @property (nonatomic, strong, readonly) NSArray *tokens;
 
