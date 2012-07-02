@@ -33,7 +33,7 @@
 
 	GKTurnBasedParticipant *nextParticipant = [[GameCenterHelper sharedInstance] nextActiveParticipantInMatch:currentMatch];
 	[currentMatch endTurnWithNextParticipant:nextParticipant
-	                               matchData:[@"matchData" dataUsingEncoding:NSUTF8StringEncoding] 
+	                               matchData:[@"matchData" dataUsingEncoding:NSUTF8StringEncoding]
 						   completionHandler:^(NSError *error) {
 				if (error) {
 					NSLog(@"%@", error);

@@ -9,14 +9,15 @@ DONE
 	- token with different color or shape is invalid
 	- all tokens in same row must have same color or same shape but only once
 - [GC]authenticate local player
-
-WIP
 - enable GameCenter [GC]
 	- finding players for match
 	- handling turn over
 	- transferring game data to other devices
 
+WIP
+
 IDEAS
+- Regel Token über Eck
 - game with rounds
 	- let user set token
 	- switch to next user
