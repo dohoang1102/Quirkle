@@ -11,9 +11,10 @@
 }
 
 - (void)setUp {
-	gameCenterHelper = [OCMockObject mockForClass:[GameCenterHelper class]];
+	gameCenterHelper = [OCMockObject niceMockForClass:[GameCenterHelper class]];
 	[GameCenterHelper setSharedInstance:gameCenterHelper];
 	mainViewController = [[MainViewController alloc] init];
+	[mainViewController viewDidLoad];
 }
 
 - (void)tearDown {
@@ -44,6 +45,10 @@
 }
 
 - (void)testInitializesNewGame {
+	id match = [OCMockObject niceMockForClass:[GKTurnBasedMatch class]];
+	[[[match stub] andReturn:@"foo"] matchID];
+	[mainViewController startNewGameForMatch:match];
+	expect([[mainViewController currentGames] objectForKey:@"foo"]).Not.toBeNil();
 }
 
 @end

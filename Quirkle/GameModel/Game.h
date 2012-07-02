@@ -19,9 +19,8 @@
 @property (nonatomic, strong, readonly) NSArray *players;
 @property (nonatomic, strong) Board *board;
 
+- (Game *)initWithParticipantIDs:(NSArray *)participants;
 - (void)addPlayer:(Player *)player;
-- (void)startGame;
-- (void)distributeStartTokens;
 
 - (Player *)playerWithParticipantID:(NSString *)playerID;
 @end

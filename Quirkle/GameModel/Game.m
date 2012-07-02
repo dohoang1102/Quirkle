@@ -11,7 +11,7 @@
 @synthesize board = _board;
 
 
-- (id)init {
+- (Game *)initWithParticipantIDs:(NSArray *)participants {
 	self = [super init];
 	if (self) {
 		[self initializeTokens];
@@ -19,8 +19,25 @@
 		_board = [[Board alloc] init];
 		srandom((unsigned int) time(NULL));
 		startTokens = 6;
+		for (NSString *playerID in participants) {
+			[self addPlayerWithParticipantID:playerID];
+		}
 	}
 	return self;
+}
+
+- (void)addPlayerWithParticipantID:(NSString *)playerID {
+	Player *player = [[Player alloc] init];
+	player.participantID = playerID;
+	[self addPlayer:player];
+	[self pullStartTokensForPlayer:player];
+}
+
+- (void)pullStartTokensForPlayer:(Player *)player {
+	int startTokenAmount = startTokens;
+	for (int i = 0; i < startTokenAmount; i++) {
+		[self pullTokenForPlayer:player];
+	}
 }
 
 - (void)initializeTokens {
@@ -37,22 +54,6 @@
 
 - (void)addPlayer:(Player *)player {
 	[_players addObject:player];
-}
-
-- (void)startGame {
-	[self distributeStartTokens];
-	[_board clean];
-	[self playTurns];
-}
-
-
-- (void)distributeStartTokens {
-	[_players enumerateObjectsUsingBlock:^(Player *player, NSUInteger idx, BOOL *stop) {
-		int startTokenAmount = startTokens;
-		for (int i = 0; i < startTokenAmount; i++) {
-			[self pullTokenForPlayer:player];
-		}
-	}];
 }
 
 - (void)playTurns {

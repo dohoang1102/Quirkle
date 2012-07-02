@@ -22,7 +22,6 @@
 - (NSUInteger)randomizedTokenIndex;
 - (void)playTurnWithPlayer:(Player *)player;
 - (void)playTurns;
-- (void)distributeStartTokens;
 @end
 
 @interface GameTest : SenTestCase
@@ -33,7 +32,7 @@
 }
 
 - (void)setUp {
-	game = [[Game alloc] init];
+	game = [[Game alloc] initWithParticipantIDs:[NSArray array]];
 }
 
 - (void)tearDown {
@@ -102,19 +101,6 @@
 	expect(game.players.count).toEqual(4);
 }
 
-- (void)testEveryPlayerPulls6TokensAtStart {
-	id player = [OCMockObject niceMockForClass:[Player class]];
-	[[player expect] pullToken:OCMOCK_ANY];
-	[[player expect] pullToken:OCMOCK_ANY];
-	[[player expect] pullToken:OCMOCK_ANY];
-	[[player expect] pullToken:OCMOCK_ANY];
-	[[player expect] pullToken:OCMOCK_ANY];
-	[[player expect] pullToken:OCMOCK_ANY];
-	[game setPlayers:[NSMutableArray arrayWithObject:player]];
-	[game distributeStartTokens];
-	[player verify];
-}
-
 - (void)testPullingTokensReduzesAmountOfTokensInGame {
 	int amount = game.tokens.count;
 	Player *player = [OCMockObject niceMockForClass:[Player class]];
@@ -128,15 +114,6 @@
 	Player *player = [OCMockObject niceMockForClass:[Player class]];
 	[game pullTokenForPlayer:player];
 	[gameMock verify];
-}
-
-- (void)testInitializedEmptyBoardAtStart {
-	[game setTokens:[NSMutableArray array]];
-	id board = [OCMockObject mockForClass:[Board class]];
-	[[board expect] clean];
-	[game setBoard:board];
-	[game startGame];
-	[board verify];
 }
 
 - (void)testAsksEveryPlayerToPutTokensToBoard {
@@ -181,9 +158,13 @@
 	[player2 verify];
 }
 
-- (void)testResetsGame {
-	Player *player = [[Player alloc] init];
-	[game addPlayer:player];
+- (void)testInitializesGameWithPlayers {
+	NSArray *participantIDs = [NSArray arrayWithObjects:@"foo", @"bar", nil];
+	Game *game1 = [[Game alloc] initWithParticipantIDs:participantIDs];
+	expect(game1.players.count).toEqual(2);
+	expect([[game1.players objectAtIndex:0] tokens].count).toEqual(6);
+	expect([[game1.players objectAtIndex:1] tokens].count).toEqual(6);
 }
+
 
 @end

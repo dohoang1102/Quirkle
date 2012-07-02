@@ -67,17 +67,20 @@
 	self.tokenCountLabel.text = [NSString stringWithFormat:@"%d Tokens left", [currentGame.tokens count]];
 }
 
+- (NSMutableArray *)playerIDsForPlayersInMatch:(GKTurnBasedMatch *)match {
+	NSMutableArray *playerIDs = [NSMutableArray array];
+	[match.participants enumerateObjectsUsingBlock:^(GKTurnBasedParticipant *participant, NSUInteger index, BOOL *stop) {
+		[playerIDs addObject:participant.playerID];
+	}];
+	return playerIDs;
+}
+
 #pragma mark GameCenterHelperDelegate methods
 - (void)startNewGameForMatch:(GKTurnBasedMatch *)match {
 	self.statusLabel.text = @"Yo man the match starts now";
 	self.takeTurnButton.enabled = YES;
-	Game *game = [[Game alloc] init];
-	for (GKTurnBasedParticipant *participant in match.participants) {
-		Player *player = [[Player alloc] init];
-		player.participantID = participant.playerID;
-		[game addPlayer:player];
-	}
-	[game distributeStartTokens];
+
+	Game *game = [[Game alloc] initWithParticipantIDs:[self playerIDsForPlayersInMatch:match]];
 	[self.currentGames setObject:game forKey:match.matchID];
 	[self updateUIForGame:match];
 }
