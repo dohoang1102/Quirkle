@@ -2,7 +2,14 @@
 #import "Token.h"
 #import <QuartzCore/QuartzCore.h>
 
-@implementation TokenView
+@implementation TokenView {
+	BOOL _selected;
+	Token *_token;
+}
+
+@synthesize selected = _selected;
+@synthesize token = _token;
+
 
 - (id)initWithCenter:(CGPoint)center token:(Token *)token {
 	CGRect frame = CGRectMake(center.x - 20, center.y - 20, 40, 40);
@@ -28,6 +35,7 @@
 			case TokenShapeTriangle: label.text = @"T"; break;
 		}
 		[self addSubview:label];
+		self.token = token;
 	}
 	return self;
 }
@@ -42,4 +50,12 @@
     return self;
 }
 
+- (void)setSelected:(BOOL)selected {
+	_selected = selected;
+	if (_selected) {
+		self.layer.borderWidth = 3.0;
+	} else {
+		self.layer.borderWidth = 1.0;
+	}
+}
 @end

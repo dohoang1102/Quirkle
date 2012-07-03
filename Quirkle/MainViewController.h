@@ -2,6 +2,7 @@
 #import "GameCenterHelper.h"
 
 @class Game;
+@class Token;
 
 @interface MainViewController : UIViewController <GameCenterHelperDelegate, UIScrollViewDelegate>
 
@@ -14,6 +15,7 @@
 
 @property (nonatomic, strong) NSMutableDictionary *currentGames;
 
+@property (nonatomic, strong) Token *currentSelectedToken;
 - (IBAction)createGameButtonTouched:(id)sender;
 - (IBAction)takeTurnButtonTouched:(id)sender;
 
