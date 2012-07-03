@@ -1,4 +1,5 @@
 #import "Board.h"
+#import "Token.h"
 
 
 @implementation Board {
@@ -40,6 +41,12 @@
 	if ([token canPutNeighbour:neighbour toSide:side]) {
 		[_tokens addObject:neighbour];
 		[token putNeighbour:neighbour toSide:side];
+		switch (side) {
+			case TokenSideLeft:neighbour.coordinate = TokenCoordinateMake(token.coordinate.x -1, token.coordinate.y); break;
+			case TokenSideRight:neighbour.coordinate = TokenCoordinateMake(token.coordinate.x +1, token.coordinate.y); break;
+			case TokenSideTop:neighbour.coordinate = TokenCoordinateMake(token.coordinate.x, token.coordinate.y - 1); break;
+			case TokenSideBottom:neighbour.coordinate = TokenCoordinateMake(token.coordinate.x, token.coordinate.y +1); break;
+		}
 	}
 }
 @end

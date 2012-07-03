@@ -47,4 +47,5 @@
 	expect([yellowCircle neighbourAtSide:TokenSideLeft]).toBeNil();
 	expect(board.tokens).Not.toContain(blueCross);
 }
+
 @end

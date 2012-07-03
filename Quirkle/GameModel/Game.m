@@ -58,10 +58,12 @@
 
 - (void)initializeTokens {
 	_tokens = [[NSMutableArray alloc] init];
+	NSInteger identifierCounter = 0;
 	for (TokenColor color = TokenColorYellow; color <= TokenColorPurple; color++) {
 		for (TokenShape shape = TokenShapeCircle; shape <= TokenShapeCross; shape++) {
 			for (int tokenCount = 0; tokenCount < TokenPerTokenType; tokenCount++) {
-				Token *token = [[Token alloc] initWithColor:color shape:shape];
+				Token *token = [[Token alloc] initWithColor:color shape:shape identifier:identifierCounter];
+				identifierCounter++;
 				[_tokens addObject:token];
 			}
 		}

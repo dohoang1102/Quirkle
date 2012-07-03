@@ -9,11 +9,11 @@
 }
 
 - (void)setUp {
-	token = [[Token alloc] initWithColor:TokenColorYellow shape:TokenShapeCircle];
+	token = [[Token alloc] initWithColor:TokenColorYellow shape:TokenShapeCircle identifier:0];
 }
 
 - (void)testHasColor {
-	expect([[Token alloc] initWithColor:TokenColorBlue shape:TokenShapeCircle].color).toEqual(TokenColorBlue);
+	expect([[Token alloc] initWithColor:TokenColorBlue shape:TokenShapeCircle identifier:0].color).toEqual(TokenColorBlue);
 }
 
 - (void)testCanHaveSixDifferentColors {
@@ -32,7 +32,7 @@
 }
 
 - (void)testHasShape {
-	expect([[Token alloc] initWithColor:TokenColorYellow shape:TokenShapeSquare].shape).toEqual(TokenShapeSquare);
+	expect([[Token alloc] initWithColor:TokenColorYellow shape:TokenShapeSquare identifier:0].shape).toEqual(TokenShapeSquare);
 }
 
 - (void)testHasSixDifferentShapes {
@@ -58,37 +58,37 @@
 }
 
 - (void)testCanHaveNeighbour {
-	Token *otherToken = [[Token alloc] initWithColor:TokenColorYellow shape:TokenShapeCircle];
+	Token *otherToken = [[Token alloc] initWithColor:TokenColorYellow shape:TokenShapeCircle identifier:0];
 	[token putNeighbour:otherToken toSide:TokenSideLeft];
 	expect([token neighbourAtSide:TokenSideLeft]).toEqual(otherToken);
 }
 
 - (void)testIsLeftNeighbourOfItsRightNeighbour {
-	Token *otherToken = [[Token alloc] initWithColor:TokenColorYellow shape:TokenShapeCircle];
+	Token *otherToken = [[Token alloc] initWithColor:TokenColorYellow shape:TokenShapeCircle identifier:0];
 	[token putNeighbour:otherToken toSide:TokenSideLeft];
 	expect([otherToken neighbourAtSide:TokenSideRight]).toEqual(token);
 }
 
 - (void)testIsRightNeighbourOfItsLeftNeighbour {
-	Token *otherToken = [[Token alloc] initWithColor:TokenColorYellow shape:TokenShapeCircle];
+	Token *otherToken = [[Token alloc] initWithColor:TokenColorYellow shape:TokenShapeCircle identifier:0];
 	[token putNeighbour:otherToken toSide:TokenSideRight];
 	expect([otherToken neighbourAtSide:TokenSideLeft]).toEqual(token);
 }
 
 - (void)testIsTopNeighbourOfItsBottomNeighbour {
-	Token *otherToken = [[Token alloc] initWithColor:TokenColorYellow shape:TokenShapeCircle];
+	Token *otherToken = [[Token alloc] initWithColor:TokenColorYellow shape:TokenShapeCircle identifier:0];
 	[token putNeighbour:otherToken toSide:TokenSideTop];
 	expect([otherToken neighbourAtSide:TokenSideBottom]).toEqual(token);
 }
 
 - (void)testIsBottomNeighbourOfItsTopNeighbour {
-	Token *otherToken = [[Token alloc] initWithColor:TokenColorYellow shape:TokenShapeCircle];
+	Token *otherToken = [[Token alloc] initWithColor:TokenColorYellow shape:TokenShapeCircle identifier:0];
 	[token putNeighbour:otherToken toSide:TokenSideBottom];
 	expect([otherToken neighbourAtSide:TokenSideTop]).toEqual(token);
 }
 
 - (void)testPuttingNeighbourChecksAllRules {
-	Token *otherToken = [[Token alloc] initWithColor:TokenColorYellow shape:TokenShapeCircle];
+	Token *otherToken = [[Token alloc] initWithColor:TokenColorYellow shape:TokenShapeCircle identifier:0];
 
 	id ruleMock = [OCMockObject mockForClass:[GameRule class]];
 	[[ruleMock expect] appliesToToken:otherToken atSide:TokenSideLeft];

@@ -7,19 +7,25 @@
 @implementation Token {
 	TokenColor _color;
 	TokenShape _shape;
+	NSInteger _identifier;
 	NSMutableArray *_neighbours;
 	NSArray *_gameRules;
+	TokenCoordinate _coordinate;
 }
 
 @synthesize color = _color;
 @synthesize shape = _shape;
 @synthesize gameRules = _gameRules;
+@synthesize identifier = _identifier;
+@synthesize coordinate = _coordinate;
 
-- (id)initWithColor:(TokenColor)color shape:(TokenShape)shape {
+
+- (id)initWithColor:(TokenColor)color shape:(TokenShape)shape identifier:(NSInteger)identifier {
 	self = [super init];
 	if (self) {
 		_color = color;
 		_shape = shape;
+		_identifier = identifier;
 		_neighbours = [[NSMutableArray alloc] initWithObjects:[NSNull null], [NSNull null], [NSNull null], [NSNull null], nil];
 	}
 	return self;
@@ -30,6 +36,7 @@
 	if (self) {
 		_color = (TokenColor) [coder decodeIntegerForKey:@"color"];
 		_shape = (TokenShape) [coder decodeIntegerForKey:@"shape"];
+		_identifier = [coder decodeIntegerForKey:@"identifier"];
 		_neighbours = [coder decodeObjectForKey:@"neighbours"];
 	}
 	return self;
@@ -38,6 +45,7 @@
 - (void)encodeWithCoder:(NSCoder *)coder {
 	[coder encodeObject:_neighbours forKey:@"neighbours"];
 	[coder encodeInteger:_shape forKey:@"shape"];
+	[coder encodeInteger:_identifier forKey:@"identifier"];
 	[coder encodeInteger:_color forKey:@"color"];
 }
 
