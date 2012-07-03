@@ -70,12 +70,12 @@
 
 - (void)updateUIForMatch:(GKTurnBasedMatch *)match {
 	self.currentGame = [self.currentGames objectForKey:match.matchID];
-	Player *currentPlayer = [self.currentGame playerWithParticipantID:match.currentParticipant.playerID];
+	Player *localPlayer = [self.currentGame playerWithParticipantID:[GKLocalPlayer localPlayer].playerID];
 	CGPoint center = CGPointMake(20, self.playerTokensView.frame.size.height / 2);
 	[[self.playerTokensView subviews] enumerateObjectsUsingBlock:^(UIView *view, NSUInteger index, BOOL* stop) {
 		[view removeFromSuperview];
 	}];
-	for (Token *token in currentPlayer.tokens) {
+	for (Token *token in localPlayer.tokens) {
 		TokenView *tokenView = [[TokenView alloc] initWithCenter:center token:token];
 		UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playerTokenTouched:)];
 		[tokenView addGestureRecognizer:tapGestureRecognizer];
