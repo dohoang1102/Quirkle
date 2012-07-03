@@ -14,7 +14,7 @@
 @synthesize statusLabel;
 @synthesize createGameButton;
 @synthesize takeTurnButton;
-@synthesize tokenButtons;
+@synthesize playerTokensView;
 @synthesize tokenCountLabel;
 @synthesize currentGames = _currentGames;
 @synthesize scrollView;
@@ -35,9 +35,9 @@
 	[self setStatusLabel:nil];
 	[self setCreateGameButton:nil];
 	[self setTakeTurnButton:nil];
-	[self setTokenButtons:nil];
 	[self setTokenCountLabel:nil];
 	[self setScrollView:nil];
+	[self setPlayerTokensView:nil];
 	[super viewDidUnload];
 }
 
@@ -62,15 +62,14 @@
 	self.statusLabel.text = @"Turn taken, waitung for response";
 }
 
-- (IBAction)tokenButtonTouched:(id)sender {
-}
-
 - (void)updateUIForMatch:(GKTurnBasedMatch *)match {
 	Game *currentGame = [self.currentGames objectForKey:match.matchID];
 	Player *currentPlayer = [currentGame playerWithParticipantID:match.currentParticipant.playerID];
-	for (NSUInteger i = 0; i < currentPlayer.tokens.count; i++) {
-		NSString *title = [[currentPlayer.tokens objectAtIndex:i] description];
-		[[self.tokenButtons objectAtIndex:i] setTitle:title forState:UIControlStateNormal];
+	CGPoint center = CGPointMake(20, self.playerTokensView.frame.size.height / 2);
+	for (Token *token in currentPlayer.tokens) {
+		TokenView *tokenView = [[TokenView alloc] initWithCenter:center token:token];
+		[self.playerTokensView addSubview:tokenView];
+		center = CGPointMake(center.x + 48, center.y);
 	}
 	self.tokenCountLabel.text = [NSString stringWithFormat:@"%d Tokens left", [currentGame.tokens count]];
 	[self layoutBoardWithTokens:currentGame.board.tokens];
@@ -85,14 +84,20 @@
 }
 
 - (void)layoutBoardWithTokens:(NSArray *)tokens {
+	CGRect scrollViewFrame = self.scrollView.frame;
+	CGPoint centerOfBoard = CGPointMake(scrollViewFrame.origin.x + scrollViewFrame.size.width / 2,
+			scrollViewFrame.origin.y + scrollViewFrame.size.height / 2);
 	if (tokens.count == 0) {
-		CGRect scrollViewFrame = self.scrollView.frame;
-		CGPoint centerOfBoard = CGPointMake(scrollViewFrame.origin.x + scrollViewFrame.size.width / 2,
-				scrollViewFrame.origin.y + scrollViewFrame.size.height / 2);
 		PlaceholderView *placeholderView = [[PlaceholderView alloc] initWithCenter:centerOfBoard];
 		[self.scrollView addSubview:placeholderView];
 	} else {
-
+		__weak MainViewController *weakSelf = self;
+		[tokens enumerateObjectsUsingBlock:^(Token *token, NSUInteger index, BOOL *stop) {
+			TokenCoordinate coordinate = token.coordinate;
+			CGPoint center = CGPointMake(centerOfBoard.x + (coordinate.x * 44), centerOfBoard.y + (coordinate.y * 44));
+			TokenView *tokenView = [[TokenView alloc] initWithCenter:center token:token];
+			[weakSelf.scrollView addSubview:tokenView];
+		}];
 	}
 }
 

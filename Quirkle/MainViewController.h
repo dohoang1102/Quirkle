@@ -10,12 +10,11 @@
 @property (nonatomic, weak) IBOutlet UIButton *takeTurnButton;
 @property (nonatomic, weak) IBOutlet UILabel *tokenCountLabel;
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, strong) IBOutletCollection(UIButton) NSArray *tokenButtons;
+@property (nonatomic, weak) IBOutlet UIView *playerTokensView;
 
 @property (nonatomic, strong) NSMutableDictionary *currentGames;
 
 - (IBAction)createGameButtonTouched:(id)sender;
 - (IBAction)takeTurnButtonTouched:(id)sender;
-- (IBAction)tokenButtonTouched:(id)sender;
 
 @end
