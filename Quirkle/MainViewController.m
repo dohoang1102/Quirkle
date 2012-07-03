@@ -1,7 +1,11 @@
 #import <GameKit/GameKit.h>
+#import <CoreGraphics/CoreGraphics.h>
 #import "MainViewController.h"
 #import "Game.h"
 #import "Player.h"
+#import "PlaceholderView.h"
+#import "Board.h"
+#import "TokenView.h"
 
 @implementation MainViewController {
 }
@@ -13,6 +17,7 @@
 @synthesize tokenButtons;
 @synthesize tokenCountLabel;
 @synthesize currentGames = _currentGames;
+@synthesize scrollView;
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -23,14 +28,16 @@
 	[super viewDidLoad];
 	_currentGames = [[NSMutableDictionary alloc] init];
 	[GameCenterHelper sharedInstance].delegate = self;
+	self.scrollView.contentSize = self.scrollView.frame.size;
 }
 
 - (void)viewDidUnload {
 	[self setStatusLabel:nil];
 	[self setCreateGameButton:nil];
 	[self setTakeTurnButton:nil];
-    [self setTokenButtons:nil];
-    [self setTokenCountLabel:nil];
+	[self setTokenButtons:nil];
+	[self setTokenCountLabel:nil];
+	[self setScrollView:nil];
 	[super viewDidUnload];
 }
 
@@ -45,7 +52,7 @@
 	GKTurnBasedParticipant *nextParticipant = [[GameCenterHelper sharedInstance] nextActiveParticipantInMatch:currentMatch];
 	[currentMatch endTurnWithNextParticipant:nextParticipant
 	                               matchData:[NSKeyedArchiver archivedDataWithRootObject:currentGame]
-						   completionHandler:^(NSError *error) {
+			completionHandler:^(NSError *error) {
 				if (error) {
 					NSLog(@"%@", error);
 				} else {
@@ -61,11 +68,12 @@
 - (void)updateUIForMatch:(GKTurnBasedMatch *)match {
 	Game *currentGame = [self.currentGames objectForKey:match.matchID];
 	Player *currentPlayer = [currentGame playerWithParticipantID:match.currentParticipant.playerID];
-	for (NSUInteger i=0; i<currentPlayer.tokens.count; i++) {
+	for (NSUInteger i = 0; i < currentPlayer.tokens.count; i++) {
 		NSString *title = [[currentPlayer.tokens objectAtIndex:i] description];
 		[[self.tokenButtons objectAtIndex:i] setTitle:title forState:UIControlStateNormal];
 	}
 	self.tokenCountLabel.text = [NSString stringWithFormat:@"%d Tokens left", [currentGame.tokens count]];
+	[self layoutBoardWithTokens:currentGame.board.tokens];
 }
 
 - (NSMutableArray *)playerIDsForPlayersInMatch:(GKTurnBasedMatch *)match {
@@ -74,6 +82,18 @@
 		[playerIDs addObject:participant.playerID];
 	}];
 	return playerIDs;
+}
+
+- (void)layoutBoardWithTokens:(NSArray *)tokens {
+	if (tokens.count == 0) {
+		CGRect scrollViewFrame = self.scrollView.frame;
+		CGPoint centerOfBoard = CGPointMake(scrollViewFrame.origin.x + scrollViewFrame.size.width / 2,
+				scrollViewFrame.origin.y + scrollViewFrame.size.height / 2);
+		PlaceholderView *placeholderView = [[PlaceholderView alloc] initWithCenter:centerOfBoard];
+		[self.scrollView addSubview:placeholderView];
+	} else {
+
+	}
 }
 
 #pragma mark GameCenterHelperDelegate methods

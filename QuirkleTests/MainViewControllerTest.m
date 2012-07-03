@@ -34,7 +34,7 @@
 }
 
 - (void)testSendsTurnToMatchOnTakeTurn {
-	id match = [OCMockObject mockForClass:[GKTurnBasedMatch class]];
+	id match = [OCMockObject niceMockForClass:[GKTurnBasedMatch class]];
 	[[[gameCenterHelper stub] andReturn:match] currentMatch];
 	[[gameCenterHelper expect] nextActiveParticipantInMatch:match];
 	[[match expect] endTurnWithNextParticipant:OCMOCK_ANY matchData:OCMOCK_ANY completionHandler:OCMOCK_ANY];

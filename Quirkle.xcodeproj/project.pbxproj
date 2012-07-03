@@ -33,6 +33,8 @@
 		260133F4157DF28700526BEA /* RowWithUniformColorRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 260133F4157DF28700526BE9 /* RowWithUniformColorRule.m */; };
 		260133F4157DF28700526BED /* AllTokensInRowMustBeDifferentRuleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 260133F4157DF28700526BEC /* AllTokensInRowMustBeDifferentRuleTest.m */; };
 		260133F4157DF28700526BF0 /* AllTokensInRowMustBeDifferentRule.m in Sources */ = {isa = PBXBuildFile; fileRef = 260133F4157DF28700526BEF /* AllTokensInRowMustBeDifferentRule.m */; };
+		260EE2FA15A31526007F0FB9 /* PlaceholderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 260EE2F915A31526007F0FB9 /* PlaceholderView.m */; };
+		260EE2FE15A31562007F0FB9 /* TokenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 260EE2FD15A31562007F0FB9 /* TokenView.m */; };
 		263C1C41159B3E480023E6C4 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 263C1C40159B3E480023E6C4 /* MainStoryboard_iPhone.storyboard */; };
 		263C1C44159B3EDA0023E6C4 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 263C1C42159B3ED10023E6C4 /* GameKit.framework */; };
 		26E7828115808A4B0009DC09 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E7827E15808A4B0009DC09 /* Game.m */; };
@@ -128,6 +130,10 @@
 		260133F4157DF28700526BEC /* AllTokensInRowMustBeDifferentRuleTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTokensInRowMustBeDifferentRuleTest.m; sourceTree = "<group>"; };
 		260133F4157DF28700526BEF /* AllTokensInRowMustBeDifferentRule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTokensInRowMustBeDifferentRule.m; sourceTree = "<group>"; };
 		260133F4157DF28700526BF1 /* AllTokensInRowMustBeDifferentRule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllTokensInRowMustBeDifferentRule.h; sourceTree = "<group>"; };
+		260EE2F815A31526007F0FB9 /* PlaceholderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderView.h; sourceTree = "<group>"; };
+		260EE2F915A31526007F0FB9 /* PlaceholderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderView.m; sourceTree = "<group>"; };
+		260EE2FC15A31562007F0FB9 /* TokenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TokenView.h; sourceTree = "<group>"; };
+		260EE2FD15A31562007F0FB9 /* TokenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TokenView.m; sourceTree = "<group>"; };
 		263C1C40159B3E480023E6C4 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		263C1C42159B3ED10023E6C4 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		26E7827D15808A4B0009DC09 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
@@ -211,11 +217,12 @@
 		26013362157956EB00526BDF /* Quirkle */ = {
 			isa = PBXGroup;
 			children = (
-				26FDC77F159B42FE00F33B2A /* GameCenterHelper.h */,
-				26FDC77F159B42FE00F33B28 /* GameCenterHelper.m */,
 				268CBC7015A1953F008BF977 /* GameModel */,
+				260EE2FB15A3152B007F0FB9 /* View */,
 				2601336B157956EB00526BDF /* AppDelegate.h */,
 				2601336C157956EB00526BDF /* AppDelegate.m */,
+				26FDC77F159B42FE00F33B2A /* GameCenterHelper.h */,
+				26FDC77F159B42FE00F33B28 /* GameCenterHelper.m */,
 				2601339715795A2C00526BDF /* MainStoryboard_iPad.storyboard */,
 				263C1C40159B3E480023E6C4 /* MainStoryboard_iPhone.storyboard */,
 				2601339915795A4500526BDF /* MainViewController.h */,
@@ -352,6 +359,17 @@
 				260133BD157A37E800526BEC /* SameColorOrShapeRule.m */,
 			);
 			path = GameRules;
+			sourceTree = "<group>";
+		};
+		260EE2FB15A3152B007F0FB9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				260EE2F815A31526007F0FB9 /* PlaceholderView.h */,
+				260EE2F915A31526007F0FB9 /* PlaceholderView.m */,
+				260EE2FC15A31562007F0FB9 /* TokenView.h */,
+				260EE2FD15A31562007F0FB9 /* TokenView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		268CBC7015A1953F008BF977 /* GameModel */ = {
@@ -493,6 +511,8 @@
 				26E7828515808A5D0009DC0B /* (null) in Sources */,
 				26E7828515808A5D0009DC14 /* Board.m in Sources */,
 				26FDC77F159B42FE00F33B29 /* GameCenterHelper.m in Sources */,
+				260EE2FA15A31526007F0FB9 /* PlaceholderView.m in Sources */,
+				260EE2FE15A31562007F0FB9 /* TokenView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

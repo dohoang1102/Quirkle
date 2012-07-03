@@ -148,11 +148,19 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="LrW-yY-cXH">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="333"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="pgJ-mo-HQM" id="CWh-35-wF5"/>
+                                </connections>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="createGameButton" destination="MdJ-bo-drd" id="fJV-He-dIJ"/>
+                        <outlet property="scrollView" destination="LrW-yY-cXH" id="p2S-Wa-78S"/>
                         <outlet property="statusLabel" destination="u5W-dT-NPg" id="oKx-iy-FtX"/>
                         <outlet property="takeTurnButton" destination="CHK-PF-1EI" id="m0i-20-iWr"/>
                         <outlet property="tokenCountLabel" destination="JdH-Gi-Waq" id="dbI-18-Bwu"/>
@@ -176,6 +184,7 @@
                 <relationship kind="action" name="takeTurnButtonTouched:"/>
                 <relationship kind="action" name="tokenButtonTouched:"/>
                 <relationship kind="outlet" name="createGameButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="statusLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="takeTurnButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="tokenCountLabel" candidateClass="UILabel"/>
