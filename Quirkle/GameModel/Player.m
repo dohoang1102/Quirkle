@@ -37,6 +37,10 @@
 	[_tokens addObject:token];
 }
 
+- (void)removeToken:(Token *)token {
+	[_tokens removeObject:token];
+}
+
 - (NSInteger)putTokensToBoard:(Board *)board {
 	return 0;
 }

@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSMutableDictionary *currentGames;
 
 @property (nonatomic, strong) Token *currentSelectedToken;
+@property (nonatomic, strong) Game *currentGame;
 - (IBAction)createGameButtonTouched:(id)sender;
 - (IBAction)takeTurnButtonTouched:(id)sender;
 

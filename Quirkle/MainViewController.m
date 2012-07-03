@@ -11,6 +11,7 @@
 @implementation MainViewController {
 @private
 	Token *_currentSelectedToken;
+	Game *_currentGame;
 }
 
 
@@ -22,6 +23,7 @@
 @synthesize currentGames = _currentGames;
 @synthesize scrollView;
 @synthesize currentSelectedToken = _currentSelectedToken;
+@synthesize currentGame = _currentGame;
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -67,21 +69,24 @@
 }
 
 - (void)updateUIForMatch:(GKTurnBasedMatch *)match {
-	Game *currentGame = [self.currentGames objectForKey:match.matchID];
-	Player *currentPlayer = [currentGame playerWithParticipantID:match.currentParticipant.playerID];
+	self.currentGame = [self.currentGames objectForKey:match.matchID];
+	Player *currentPlayer = [self.currentGame playerWithParticipantID:match.currentParticipant.playerID];
 	CGPoint center = CGPointMake(20, self.playerTokensView.frame.size.height / 2);
+	[[self.playerTokensView subviews] enumerateObjectsUsingBlock:^(UIView *view, NSUInteger index, BOOL* stop) {
+		[view removeFromSuperview];
+	}];
 	for (Token *token in currentPlayer.tokens) {
 		TokenView *tokenView = [[TokenView alloc] initWithCenter:center token:token];
-		UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tokenTouched:)];
+		UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playerTokenTouched:)];
 		[tokenView addGestureRecognizer:tapGestureRecognizer];
 		[self.playerTokensView addSubview:tokenView];
 		center = CGPointMake(center.x + 48, center.y);
 	}
-	self.tokenCountLabel.text = [NSString stringWithFormat:@"%d Tokens left", [currentGame.tokens count]];
-	[self layoutBoardWithTokens:currentGame.board.tokens];
+	self.tokenCountLabel.text = [NSString stringWithFormat:@"%d Tokens left", [self.currentGame.tokens count]];
+	[self layoutBoardWithTokens:self.currentGame.board.tokens];
 }
 
-- (void)tokenTouched:(UIGestureRecognizer *)gestureRecognizer {
+- (void)playerTokenTouched:(UIGestureRecognizer *)gestureRecognizer {
 	TokenView *tokenView = (TokenView *) gestureRecognizer.view;
 	tokenView.selected = !tokenView.selected;
 	if (tokenView.selected) {
@@ -106,11 +111,16 @@
 }
 
 - (void)layoutBoardWithTokens:(NSArray *)tokens {
+	[[self.scrollView subviews] enumerateObjectsUsingBlock:^(UIView *view, NSUInteger index, BOOL *stop) {
+		[view removeFromSuperview];
+	}];
 	CGRect scrollViewFrame = self.scrollView.frame;
 	CGPoint centerOfBoard = CGPointMake(scrollViewFrame.origin.x + scrollViewFrame.size.width / 2,
 			scrollViewFrame.origin.y + scrollViewFrame.size.height / 2);
 	if (tokens.count == 0) {
 		PlaceholderView *placeholderView = [[PlaceholderView alloc] initWithCenter:centerOfBoard];
+		UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(placeholderTouched:)];
+		[placeholderView addGestureRecognizer:tapGestureRecognizer];
 		[self.scrollView addSubview:placeholderView];
 	} else {
 		__weak MainViewController *weakSelf = self;
@@ -120,6 +130,20 @@
 			TokenView *tokenView = [[TokenView alloc] initWithCenter:center token:token];
 			[weakSelf.scrollView addSubview:tokenView];
 		}];
+	}
+}
+
+- (void)placeholderTouched:(UIGestureRecognizer *)gestureRecognizer {
+	GKTurnBasedMatch *match = [GameCenterHelper sharedInstance].currentMatch;
+	if (self.currentSelectedToken) {
+		Board *board = self.currentGame.board;
+		if (board.tokens.count == 0){
+			[board putFirstToken:self.currentSelectedToken];
+			Player *currentPlayer = [self.currentGame playerWithParticipantID:match.currentParticipant.playerID];
+			[currentPlayer removeToken:self.currentSelectedToken];
+			self.currentSelectedToken = nil;
+		}
+		[self updateUIForMatch:match];
 	}
 }
 

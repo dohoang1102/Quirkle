@@ -10,6 +10,8 @@
 
 @property (nonatomic, copy) NSString *participantID;
 - (void)pullToken:(Token*)token;
+- (void)removeToken:(Token *)token;
+
 - (NSInteger)putTokensToBoard:(Board*)board;
 
 @end
