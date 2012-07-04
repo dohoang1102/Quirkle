@@ -12,11 +12,9 @@
 @property (nonatomic, weak) IBOutlet UILabel *tokenCountLabel;
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, weak) IBOutlet UIView *playerTokensView;
-
 @property (nonatomic, strong) NSMutableDictionary *currentGames;
-
 @property (nonatomic, strong) Token *currentSelectedToken;
-@property (nonatomic, strong) Game *currentGame;
+
 - (IBAction)createGameButtonTouched:(id)sender;
 - (IBAction)takeTurnButtonTouched:(id)sender;
 

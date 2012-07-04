@@ -115,4 +115,11 @@
 	}
 	return nil;
 }
+
+- (void)player:(Player *)player putToken:(Token *)token atToken:(Token *)neighbourToken atSide:(TokenSide)side {
+	if (self.board.tokens.count == 0) {
+		[self.board putFirstToken:token];
+		[player removeToken:token];
+	}
+}
 @end

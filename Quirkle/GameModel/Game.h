@@ -1,4 +1,5 @@
 #import <Foundation/Foundation.h>
+#import "Token.h"
 
 @class Player;
 @class Board;
@@ -23,4 +24,5 @@
 - (void)addPlayer:(Player *)player;
 
 - (Player *)playerWithParticipantID:(NSString *)playerID;
+- (void)player:(Player *)player putToken:(Token *)token atToken:(Token *)neighbourToken atSide:(TokenSide)side;
 @end
