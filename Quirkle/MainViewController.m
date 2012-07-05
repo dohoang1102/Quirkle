@@ -81,8 +81,11 @@
 	Game *currentGame = [self.currentGames objectForKey:currentMatch.matchID];
 
 	if (self.currentSelectedToken) {
+        CGRect rect = [[gestureRecognizer view] frame];
+        CGPoint point = rect.origin;
+        TokenCoordinate coordinate = [self coordinateForPoint:point];
 		Player *currentPlayer = [currentGame playerWithParticipantID:currentMatch.currentParticipant.playerID];
-		[currentGame player:currentPlayer putToken:self.currentSelectedToken atToken:nil atSide:TokenSideLeft];
+		[currentGame player:currentPlayer putToken:self.currentSelectedToken atTokenCoordinate:coordinate atSide:TokenSideLeft];
 		self.currentSelectedToken = nil;
 		[self updateUI];
 	}
@@ -129,6 +132,10 @@
 
 - (CGPoint)pointForCoordinate:(TokenCoordinate)coordinate {
 	return CGPointMake(self.centerOfBoard.x + (coordinate.x * 44), self.centerOfBoard.y + (coordinate.y * 44));
+}
+
+- (TokenCoordinate)coordinateForPoint:(CGPoint)point {
+	return TokenCoordinateMake((point.x - self.centerOfBoard.x)/44, (point.y - self.centerOfBoard.y)/44);
 }
 
 - (void)layoutPlaceholderAtCoordinate:(TokenCoordinate)coordinate {

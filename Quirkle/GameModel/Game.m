@@ -4,6 +4,7 @@
 #import "Board.h"
 
 @implementation Game {
+    NSMutableDictionary *_tokenToCoordinate;
 }
 
 @synthesize tokens = _tokens;
@@ -22,6 +23,7 @@
 		for (NSString *playerID in participants) {
 			[self addPlayerWithParticipantID:playerID];
 		}
+        _tokenToCoordinate = [[NSMutableDictionary alloc] init];
 	}
 	return self;
 }
@@ -116,10 +118,20 @@
 	return nil;
 }
 
-- (void)player:(Player *)player putToken:(Token *)token atToken:(Token *)neighbourToken atSide:(TokenSide)side {
+- (void)player:(Player *)player putToken:(Token *)token atTokenCoordinate:(TokenCoordinate)coordinate atSide:(TokenSide)side {
 	if (self.board.tokens.count == 0) {
 		[self.board putFirstToken:token];
-		[player removeToken:token];
-	}
+	} else {
+        Token *tokenOnBoard = [self findTokenToCoordinate:coordinate];
+        [self.board addToken:token to:tokenOnBoard atSide:side];
+    }
+    [player removeToken:token];
+    TokenCoordinate tokenCoordinate = token.coordinate;
+    [_tokenToCoordinate setObject:token forKey:[NSValue valueWithPointer:&tokenCoordinate]];
 }
+
+- (Token *)findTokenToCoordinate:(TokenCoordinate)coordinate{
+    return [_tokenToCoordinate objectForKey:[NSValue valueWithPointer:&coordinate]];
+}
+
 @end

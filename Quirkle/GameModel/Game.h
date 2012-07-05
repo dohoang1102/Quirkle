@@ -24,5 +24,5 @@
 - (void)addPlayer:(Player *)player;
 
 - (Player *)playerWithParticipantID:(NSString *)playerID;
-- (void)player:(Player *)player putToken:(Token *)token atToken:(Token *)neighbourToken atSide:(TokenSide)side;
+- (void)player:(Player *)player putToken:(Token *)token atTokenCoordinate:(TokenCoordinate)coordinate atSide:(TokenSide)side;
 @end
