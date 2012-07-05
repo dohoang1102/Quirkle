@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSMutableDictionary *currentGames;
 @property (nonatomic, strong) Token *currentSelectedToken;
 
+@property (nonatomic, assign) CGPoint centerOfBoard;
 - (IBAction)createGameButtonTouched:(id)sender;
 - (IBAction)takeTurnButtonTouched:(id)sender;
 

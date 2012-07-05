@@ -10,6 +10,8 @@
 
 @implementation MainViewController {
 	Token *_currentSelectedToken;
+@private
+	CGPoint _centerOfBoard;
 }
 
 
@@ -21,6 +23,7 @@
 @synthesize currentGames = _currentGames;
 @synthesize scrollView;
 @synthesize currentSelectedToken = _currentSelectedToken;
+@synthesize centerOfBoard = _centerOfBoard;
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -31,6 +34,9 @@
 	[super viewDidLoad];
 	_currentGames = [[NSMutableDictionary alloc] init];
 	[GameCenterHelper sharedInstance].delegate = self;
+	CGRect scrollViewFrame = self.scrollView.frame;
+	self.centerOfBoard = CGPointMake(scrollViewFrame.origin.x + scrollViewFrame.size.width / 2,
+			scrollViewFrame.origin.y + scrollViewFrame.size.height / 2);
 }
 
 - (void)viewDidUnload {
@@ -93,26 +99,49 @@
 }
 
 - (void)layoutBoardWithTokens:(NSArray *)tokens {
-	[[self.scrollView subviews] enumerateObjectsUsingBlock:^(UIView *view, NSUInteger index, BOOL *stop) {
-		[view removeFromSuperview];
-	}];
-	CGRect scrollViewFrame = self.scrollView.frame;
-	CGPoint centerOfBoard = CGPointMake(scrollViewFrame.origin.x + scrollViewFrame.size.width / 2,
-	scrollViewFrame.origin.y + scrollViewFrame.size.height / 2);
+	[self clearScrollView];
 	if (tokens.count == 0) {
-		PlaceholderView *placeholderView = [[PlaceholderView alloc] initWithCenter:centerOfBoard];
-		UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(placeholderTouched:)];
-		[placeholderView addGestureRecognizer:tapGestureRecognizer];
-		[self.scrollView addSubview:placeholderView];
+		[self layoutPlaceholderAtCoordinate:TokenCoordinateMake(0, 0)];
 	} else {
-		__weak MainViewController *weakSelf = self;
-		[tokens enumerateObjectsUsingBlock:^(Token *token, NSUInteger index, BOOL *stop) {
-			TokenCoordinate coordinate = token.coordinate;
-			CGPoint center = CGPointMake(centerOfBoard.x + (coordinate.x * 44), centerOfBoard.y + (coordinate.y * 44));
-			TokenView *tokenView = [[TokenView alloc] initWithCenter:center token:token];
-			[weakSelf.scrollView addSubview:tokenView];
-		}];
+		for (Token *token in tokens) {
+			[self layoutToken:token];
+			[self layoutPlaceholderNeighboursOfToken:token];
+		}
 	}
+}
+
+- (void)clearScrollView {
+	for (UIView *view in self.scrollView.subviews) {
+		[view removeFromSuperview];
+	}
+}
+
+- (void)layoutPlaceholderNeighboursOfToken:(Token *)token {
+	GKTurnBasedMatch *currentMatch = [[GameCenterHelper sharedInstance] currentMatch];
+	Game *currentGame = [self.currentGames objectForKey:currentMatch.matchID];
+	for (TokenSide side = TokenSideTop; side <= TokenSideLeft; side++) {
+		if ([token neighbourAtSide:side] == nil) {
+			TokenCoordinate coordinate = [currentGame.board coordinateOfNeighbourOfToken:token atSide:side];
+			[self layoutPlaceholderAtCoordinate:coordinate];
+		}
+	}
+}
+
+- (CGPoint)pointForCoordinate:(TokenCoordinate)coordinate {
+	return CGPointMake(self.centerOfBoard.x + (coordinate.x * 44), self.centerOfBoard.y + (coordinate.y * 44));
+}
+
+- (void)layoutPlaceholderAtCoordinate:(TokenCoordinate)coordinate {
+	PlaceholderView *placeholderView = [[PlaceholderView alloc] initWithCenter:[self pointForCoordinate:coordinate]];
+	UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(placeholderTouched:)];
+	[placeholderView addGestureRecognizer:tapGestureRecognizer];
+	[self.scrollView addSubview:placeholderView];
+}
+
+- (void)layoutToken:(Token *)token {
+	CGPoint center = [self pointForCoordinate:token.coordinate];
+	TokenView *tokenView = [[TokenView alloc] initWithCenter:center token:token];
+	[self.scrollView addSubview:tokenView];
 }
 
 - (void)layoutAreaForPlayer:(Player *)localPlayer {

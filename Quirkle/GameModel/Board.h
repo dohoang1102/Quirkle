@@ -12,4 +12,5 @@
 - (void)putFirstToken:(Token *)token;
 - (void)addToken:(Token *)neighbour to:(Token *)token atSide:(TokenSide)side;
 
+- (TokenCoordinate)coordinateOfNeighbourOfToken:(Token *)token atSide:(TokenSide)side;
 @end
